@@ -105,10 +105,7 @@ func XformDemo() {
     {"first": "Roger", "last": "Craig"}
   ]
 }`
-	outputJson, shouldReturn := Xform(inputJson)
-	if shouldReturn {
-		return
-	}
+	outputJson := Xform(inputJson)
 
 	// print the inpt and output json
 	fmt.Println("\n--- Xform:")
@@ -116,7 +113,7 @@ func XformDemo() {
 	fmt.Println("outputJson:", outputJson)
 }
 
-func Xform(inputJson string) (string, bool) {
+func Xform(inputJson string) string {
 	// Get the "name.first" and "children" fields from the JSON string
 	// Map the "friends" array to an array of friend names
 	// Create a new JSON object with the extracted fields
@@ -139,5 +136,5 @@ func Xform(inputJson string) (string, bool) {
 	newJSON, _ = sjson.Set(newJSON, "friends", friends)
 
 	outputJson := strings.TrimSpace(newJSON)
-	return outputJson, false
+	return outputJson
 }
